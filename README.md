@@ -37,6 +37,7 @@ The main objective is to demonstrate how to build a modern and responsive web ap
 
 ---
 
+
 ## 🏗️ Project Architecture
 
 The app follows a modular and organized folder structure:
@@ -54,6 +55,36 @@ src/
 └── index.tsx # Entry point (React DOM rendering)
 
 
+🧠 Understanding the Main Files
+🧩 TaskForm.tsx
+Handles the creation of new tasks:
+
+Uses useState to manage the input field.
+Validates the input.
+Calls the parent component function (onSubmit) to create a new task in Supabase.
+Uses isSubmitting to prevent duplicate submissions.
+🧩 TaskItem.tsx
+Displays a single task:
+
+Checkbox to toggle completion status.
+Delete button with confirmation.
+Formatted date display using JavaScript’s toLocaleDateString().
+Visual feedback when a task is completed (greyed text and “Completed” badge).
+🧩 TaskList.tsx
+Responsible for showing all tasks:
+
+Splits tasks into Active and Completed groups.
+Renders each task using the TaskItem component.
+Shows an info message when no tasks exist.
+🧩 taskService.ts
+Handles all communication with Supabase.
+Includes 4 main functions:
+
+getTasks() → Fetches all tasks
+createTask(title) → Inserts a new task
+toggleTask(id, is_done) → Updates task completion status
+deleteTask(id) → Deletes a task by ID
+Uses async/await and checks for errors from Supabase after each operation.
 🧱 Database Structure (Supabase)
 
 The database contains a single table called tasks.
